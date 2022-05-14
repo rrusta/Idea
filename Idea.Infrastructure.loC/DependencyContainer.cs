@@ -25,10 +25,14 @@ namespace Idea.Infrastructure.IoC
             services.AddScoped<IAuthService, AuthService>();
             services.AddScoped<IEmailTemplatesService, EmailTemplatesService>();
             services.AddScoped<ISettingsService, SettingsService>();
+
             //Infrastructure.Data Layer
             services.AddScoped<IAuthRepository, AuthRepository>();
             services.AddScoped<ISendEmailRepository, SendEmailRepository>();
             services.AddScoped<ISettingsRepository, SettingsRepository>();
+            services.AddScoped<IOperatorSettingsRepository, OperatorSettingsRepository>();
+            services.AddScoped<IEmailTemplatesRepository, EmailTemplatesRepository>();
+            services.AddScoped<IAWSS3Repository, AWSS3Repository>();
 
 
 
