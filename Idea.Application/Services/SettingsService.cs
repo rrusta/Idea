@@ -1,12 +1,11 @@
 ﻿using AutoMapper;
-using RealEstate.Application.ViewModels;
-using RealEstate.Infrastructure.Data.Interfaces;
-using System.Threading.Tasks;
-using RealEstate.Application.Interfaces;
-using RealEstate.Application.DTOViewModels.UpdateDTOViewModels;
-using RealEstate.Domain.DTOs.UpdateDTOs;
+using Idea.Application.DTOViewModels.UpdateDTOViewModels;
+using Idea.Application.Interfaces;
+using Idea.Application.ViewModels;
+using Idea.Domain.DTOs.UpdateDTOs;
+using Idea.Infrastructure.Data.Interfaces;
 
-namespace RealEstate.Application.Services
+namespace Idea.Application.Services
 {
     public class SettingsService : ISettingsService
     {

@@ -1,11 +1,12 @@
-﻿namespace RealEstate.Application.Interfaces
-{
+﻿    using Idea.Application.ViewModels;
     using Microsoft.AspNetCore.Mvc;
     using RealEstate.Application.ViewModels;
     using System.Collections.Generic;
     using System.Threading.Tasks;
 
-    public interface IAuthService
+    namespace Idea.Application.Interfaces
+    {
+        public interface IAuthService
     {
         Task<UserViewModel> Register(RegisterUserViewModel registerViewModel);
 
@@ -30,6 +31,6 @@
 
         public Task<IEnumerable<UserTypesViewModel>> GetUserTypes();
 
-        public Task<UserViewModel> RegisterUserDetails(RegisterUserDetailsViewModel registerUserDetailsViewModel); 
+        public Task<UserViewModel> RegisterUserDetails(RegisterUserDetailsViewModel registerUserDetailsViewModel);
     }
 }

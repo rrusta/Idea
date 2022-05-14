@@ -4,6 +4,7 @@
     using Idea.Application.Interfaces;
     using Idea.Application.ViewModels;
     using System.Threading.Tasks;
+    using RealEstate.Application.ViewModels;
 
     [Route("api/[controller]")]
     [ApiController]

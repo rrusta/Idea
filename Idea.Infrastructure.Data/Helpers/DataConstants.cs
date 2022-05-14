@@ -8,7 +8,7 @@ namespace Idea.Infrastructure.Data.Helpers
     {
         public class AppSettings
         {
-            public const string ConnectionString = "RealEstateDBConnection";
+            public const string ConnectionString = "IdeaDBConnection";
         }
 
         public class EmailTemplates

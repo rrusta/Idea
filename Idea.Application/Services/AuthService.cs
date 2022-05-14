@@ -1,15 +1,10 @@
 ﻿using AutoMapper;
-using Microsoft.AspNetCore.Authentication;
+using Idea.Application.Interfaces;
+using Idea.Application.ViewModels;
+using Idea.Domain.IdentityModels;
+using Idea.Infrastructure.Data.Interfaces;
 using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Mvc;
-using RealEstate.Application.Interfaces;
 using RealEstate.Application.ViewModels;
-using RealEstate.Domain.IdentityModels;
-using RealEstate.Infrastructure.Data.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Threading.Tasks;
 
 public class AuthService : IAuthService
 {

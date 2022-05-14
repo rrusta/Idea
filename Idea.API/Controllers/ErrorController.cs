@@ -1,8 +1,7 @@
-﻿
-using Microsoft.AspNetCore.Mvc;
-using RealEstate.API.Errors;
+﻿using Microsoft.AspNetCore.Mvc;
+using Idea.API.Errors;
 
-namespace RealEstate.API.Controllers
+namespace Idea.API.Controllers
 {
     public class ErrorController : ControllerBase
     {

@@ -12,7 +12,7 @@ namespace Idea.API.Configurations
     {
         public static void RegisterAutoMapper(this IServiceCollection services)
         {
-           /// services.AddAutoMapper(typeof(AutoMapperConfiguration));
+            services.AddAutoMapper(typeof(AutoMapperConfiguration));
             AutoMapperConfiguration.RegisterMappings();
         }
     }

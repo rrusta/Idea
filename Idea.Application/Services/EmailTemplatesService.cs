@@ -1,11 +1,11 @@
 ﻿using AutoMapper;
+using Idea.Application.DTOViewModels.InsertDTOViewModels;
+using Idea.Application.Interfaces;
+using Idea.Application.ViewModels;
+using Idea.Domain.DTOs.InsertDTOs;
+using Idea.Domain.IdentityModels;
+using Idea.Infrastructure.Data.Interfaces;
 using Microsoft.AspNetCore.Identity;
-using RealEstate.Application.DTOViewModels.InsertDTOViewModels;
-using RealEstate.Application.Interfaces;
-using RealEstate.Application.ViewModels;
-using RealEstate.Domain.DTOs.InsertDTOs;
-using RealEstate.Domain.IdentityModels;
-using RealEstate.Infrastructure.Data.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Text;

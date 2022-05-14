@@ -1,26 +1,31 @@
-using Idea.Domain.Context;
-using Idea.Infrastructure.IoC;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Http.Features;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.OpenApi.Models;
+using Microsoft.IdentityModel.Tokens;
+using Idea.API.Configurations;
+using Idea.API.Errors;
+using Idea.API.MiddleWare;
+using Idea.Infrastructure.IoC;
 
 namespace Idea.API
 {
     public class Startup
     {
-        private readonly IConfiguration _config;
-        public Startup(IConfiguration config)
+        public Startup(IConfiguration configuration)
         {
-            _config = config;
+            Configuration = configuration;
         }
 
+        public IConfiguration Configuration { get; }
+
+        // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            ////services.RegisterAutoMapper();
-            //services.AddDbContext<IdeaDbContext>(options =>
-            //options.UseSqlServer(
-            //_config.GetConnectionString("Data Source=.;Initial Catalog=IdeaDb;Integrated Security=True")),
-            //ServiceLifetime.Transient);
+            services.RegisterAutoMapper();
 
             services.AddMvc(options => options.EnableEndpointRouting = false);
 
@@ -31,62 +36,94 @@ namespace Idea.API
                     .AllowAnyMethod()
                     .AllowAnyHeader());
             });
-            services.AddControllers();
+
+            //services.AddControllers();
+
             services.AddSwaggerGen(c =>
             {
-                c.SwaggerDoc("v1", new OpenApiInfo { Title = "Idea", Version = "v1" });
+                c.SwaggerDoc("v1", new Microsoft.OpenApi.Models.OpenApiInfo { Title = "RealEstateAPI", Version = "v1" });
             });
-            services.AddControllersWithViews();
-            services.AddControllers();
-            var connectionString = _config.GetConnectionString("Data Source=.;Initial Catalog=IdeaDb;Integrated Security=True");
-            services.AddDbContext<IdeaDbContext>(options => options.UseSqlServer("Data Source=.;Initial Catalog=IdeaDb;Integrated Security=True"));
-            //services.Configure<FormOptions>(o =>
-            //{
-            //    o.ValueLengthLimit = int.MaxValue;
-            //    o.MultipartBodyLengthLimit = long.MaxValue;
-            //    o.MemoryBufferThreshold = int.MaxValue;
-            //});
+
+            var jwtSecretkey = Encoding.ASCII.GetBytes(Configuration.GetSection("AppSettings:Token").Value);
+            services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+               .AddJwtBearer(options =>
+               {
+                   options.TokenValidationParameters = new TokenValidationParameters
+                   {
+                       ValidateIssuerSigningKey = true,
+                       IssuerSigningKey = new SymmetricSecurityKey(jwtSecretkey),
+                       ValidateIssuer = false,
+                       ValidateAudience = false
+                   };
+               });
+
+
+            services.Configure<FormOptions>(o =>
+            {
+                o.ValueLengthLimit = int.MaxValue;
+                o.MultipartBodyLengthLimit = long.MaxValue;
+                o.MemoryBufferThreshold = int.MaxValue;
+            });
 
             services.Configure<IISServerOptions>(options =>
             {
                 options.AutomaticAuthentication = false;
             });
 
-            //services.Configure<ApiBehaviorOptions>(options =>
-            //{
-            //    options.InvalidModelStateResponseFactory = ActionContext =>
-            //    {
-            //        var errors = ActionContext.ModelState.Where(e => e.Value.Errors.Count > 0)
-            //        .SelectMany(x => x.Value.Errors)
-            //        .Select(x => x.ErrorMessage).ToArray();
+            services.Configure<ApiBehaviorOptions>(options =>
+            {
+                options.InvalidModelStateResponseFactory = ActionContext =>
+                {
+                    var errors = ActionContext.ModelState.Where(e => e.Value.Errors.Count > 0)
+                    .SelectMany(x => x.Value.Errors)
+                    .Select(x => x.ErrorMessage).ToArray();
 
-            //        var errorResponse = new ApiValidationErrorResponse
-            //        {
-            //            Errors = errors
-            //        };
-            //        return new BadRequestObjectResult(errorResponse);
-            //    };
+                    var errorResponse = new ApiValidationErrorResponse
+                    {
+                        Errors = errors
+                    };
+                    return new BadRequestObjectResult(errorResponse);
+                };
+            });
+            //services.Configure<IdentityOptions>(o =>
+            //{
+            //    o.Password.RequiredLength = 30;
             //});
+
+
             DependencyContainer.RegisterServices(services);
         }
+
+        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
-            app.UseExceptionHandler("/Home/Error");
+            //if (env.IsDevelopment())
+            //{
+            //    app.UseDeveloperExceptionPage();
+            //}
+            app.UseMiddleware<ExceptionMiddleware>();
             app.UseStatusCodePagesWithReExecute("api/errors/{0}");
             app.UseSwagger();
             app.UseSwaggerUI(c =>
             {
-                c.SwaggerEndpoint("/swagger/v1/swagger.json", "Parking API V1");
+                c.SwaggerEndpoint("../swagger/v1/swagger.json", "RealEstate API V1");
             });
             app.UseHttpsRedirection();
             app.UseCookiePolicy();
-            app.UseRouting();
+
+            //app.UseRouting();
+
             app.UseAuthentication();
             app.UseAuthorization();
             app.UseCors("CorsPolicy");
             app.UseDefaultFiles();
             app.UseStaticFiles();
             app.UseMvc();
+
+            //app.UseEndpoints(endpoints =>
+            //{
+            //    endpoints.MapControllers();
+            //});
         }
     }
 }

@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
-namespace RealEstate.API.Controllers
+namespace Idea.API.Controllers
 {
 
     [ApiController]

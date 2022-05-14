@@ -1,13 +1,11 @@
-﻿using RealEstate.Application.DTOViewModels.InsertDTOViewModels;
-using RealEstate.Application.DTOViewModels.UpdateDTOViewModels;
-using RealEstate.Application.ViewModels;
-using RealEstate.Domain.IdentityModels;
+﻿using Idea.Application.DTOViewModels.UpdateDTOViewModels;
+using Idea.Application.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace RealEstate.Application.Interfaces
+namespace Idea.Application.Interfaces
 {
     public interface ISettingsService
     {

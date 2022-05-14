@@ -1,11 +1,12 @@
-﻿using RealEstate.Application.DTOViewModels.InsertDTOViewModels;
+﻿using Idea.Application.DTOViewModels.InsertDTOViewModels;
+using Idea.Application.ViewModels;
 using RealEstate.Application.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace RealEstate.Application.Interfaces
+namespace Idea.Application.Interfaces
 {
     public interface IEmailTemplatesService
     {
