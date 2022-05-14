@@ -23,7 +23,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Idea.Infrastructure.loC", "
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Idea.Application", "Idea.Application\Idea.Application.csproj", "{131BE815-14A5-4CE4-A503-4819447B2F89}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Idea.Infrastructure.Data", "Idea.Infrastructure.Data\Idea.Infrastructure.Data.csproj", "{28368BD0-4033-4DB7-9D7A-9518A7C19AD4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Idea.Infrastructure.Data", "Idea.Infrastructure.Data\Idea.Infrastructure.Data.csproj", "{28368BD0-4033-4DB7-9D7A-9518A7C19AD4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -56,7 +56,6 @@ Global
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
-		{9A0588A3-5CF9-4879-839E-3E6F3A7E3FED} = {732B9B9E-43F2-41E8-94A5-7642E0EC1C6C}
 		{FB2E4008-FAD0-430F-80EC-B04A3EFBB3AF} = {732B9B9E-43F2-41E8-94A5-7642E0EC1C6C}
 		{7795B5E9-664F-4863-8F33-C941F76D560F} = {A8D6F1B8-713A-4F1F-A1AA-9D261147199C}
 		{4085F4F1-8725-4801-B1A8-C545C5E66BBD} = {9A0588A3-5CF9-4879-839E-3E6F3A7E3FED}
