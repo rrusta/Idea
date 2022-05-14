@@ -1,5 +1,5 @@
-using Idea.Domain.Data;
-using Idea.Infrastructure.loC;
+using Idea.Domain.Context;
+using Idea.Infrastructure.IoC;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;

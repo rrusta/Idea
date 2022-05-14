@@ -1,10 +1,10 @@
-﻿using Idea.Domain.Data;
+﻿using Idea.Domain.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using System.Reflection;
 
-namespace Idea.Infrastructure.loC
+namespace Idea.Infrastructure.IoC
 {
     public class DependencyContainer
     {
