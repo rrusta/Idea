@@ -92,17 +92,17 @@ namespace Idea.Infrastructure.Data.Repositories
         {
             var result = await _userManager.CreateAsync(user, password);
 
-            //var hasRole = await _userManager.GetRolesAsync(user);
-            //if (hasRole.Count==0)
-            //{
-            //    string roleName = "Admin";
-            //    IdentityRole addRole = new IdentityRole();
-            //    addRole.Name = roleName;
-            //    addRole.ConcurrencyStamp = roleName;
-            //    await _context.Roles.AddAsync(addRole);
-            //    await _roleManager.CreateAsync(addRole);
-            //    await _userManager.AddToRoleAsync(user, addRole.Name);
-            //}
+            var hasRole = await _userManager.GetRolesAsync(user);
+            if (hasRole.Count == 0)
+            {
+                string roleName = "Admin";
+                IdentityRole addRole = new IdentityRole();
+                addRole.Name = roleName;
+                addRole.ConcurrencyStamp = roleName;
+                await _context.Roles.AddAsync(addRole);
+                await _roleManager.CreateAsync(addRole);
+                await _userManager.AddToRoleAsync(user, addRole.Name);
+            }
 
             string code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
             var encodedCode = Base64UrlEncoder.Encode(code);

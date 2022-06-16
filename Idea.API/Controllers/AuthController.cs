@@ -6,9 +6,7 @@
     using System.Threading.Tasks;
     using RealEstate.Application.ViewModels;
 
-    [Route("api/[controller]")]
-    [ApiController]
-    public class AuthController : ControllerBase
+    public class AuthController : BaseApiController
     {
         private readonly IAuthService _authService;
 

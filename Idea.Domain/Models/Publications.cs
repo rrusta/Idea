@@ -1,12 +1,14 @@
 ﻿using Idea.Domain.BaseModels;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Text;
 
 namespace Idea.Domain.Models
 {
     public class Publications : BaseModel
     {
+        [Key]
         public int PublicationId { get; set; }
 
         public int PublisherTypeId { get; set; }

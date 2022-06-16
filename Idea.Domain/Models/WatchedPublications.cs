@@ -1,11 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Text;
 
 namespace Idea.Domain.Models
 {
     public class WatchedPublications
     {
+        [Key]
         public int WatchedPublicationId { get; set; }
 
         public string UserId { get; set; }
